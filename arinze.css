@@ -1,0 +1,55 @@
+body { font-family: monospace; background: #f4f4f4; margin: 0; padding: 20px; }
+.header { text-align: center; margin-bottom: 10px; }
+.print-btn { background: #0066ff; color: white; border: none; padding: 12px 30px; border-radius: 10px; font-size: 16px; cursor: pointer; }
+
+.receipt {
+  width: 300px;
+  margin: 20px auto;
+  background: white;
+  border: 2px dashed #999;
+  padding: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  font-size: 13px;
+}
+
+.logo { text-align: center; margin-bottom: 10px; }
+.business-name { text-align: center; font-weight: bold; font-size: 18px; }
+.small { font-size: 12px; color: #ff6200; }
+.tagline { text-align: center; font-size: 11px; margin: 8px 0; }
+.phone { text-align: center; font-weight: bold; }
+.info { border-top: 1px dashed #000; border-bottom: 1px dashed #000; padding: 8px 0; margin: 10px 0; font-size: 12px; }
+.info .row { display: flex; justify-content: space-between; }
+table { width: 100%; border-collapse: collapse; font-size: 12px; }
+th { text-align: left; border-bottom: 1px dashed #000; padding: 5px 0; }
+td { padding: 4px 0; }
+td:nth-child(2) { text-align: center; }
+td:nth-child(3) { text-align: right; }
+.totals div { display: flex; justify-content: space-between; margin: 3px 0; }
+.total-line { font-weight: bold; font-size: 14px; border-top: 1px dashed #000; padding-top: 5px; }
+.balance { color: green; font-weight: bold; }
+.save-btn { color: white; background: #ff6200; border: none; padding: 12px 30px; border-radius: 10px; font-size: 16px; cursor: pointer; }
+.history-btn { color: rgb(255, 255, 255); background: #00cc66; border: none; padding: 12px 30px; border-radius: 10px; font-size: 16px; cursor: pointer; }
+.thankyou { text-align: center; font-size: 11px; margin-top: 15px; line-height: 1.4; }
+
+.form { background: white; padding: 20px; border-radius: 12px; margin: 20px auto; max-width: 340px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.form input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 8px; }
+.add-btn, .update-btn { width: 100%; padding: 14px; margin: 10px 0; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
+.add-btn { background: #00cc66; color: white; }
+.update-btn { background: #ff6200; color: white; font-size: 16px; }
+
+/* ========== STRONG PRINT FIX ========== */
+@media print {
+  .no-print { display: none !important; }
+  body * { visibility: hidden !important; }
+  #receipt, #receipt * { visibility: visible !important; }
+  #receipt {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+    width: 76mm !important;
+    margin: 0 auto !important;
+    box-shadow: none !important;
+    border: 1px dashed #999 !important;
+    padding: 10px !important;
+  }
+}

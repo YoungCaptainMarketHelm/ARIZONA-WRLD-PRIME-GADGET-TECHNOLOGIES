@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arizona Gadgets - Digital Receipt</title>
+  <link rel="stylesheet" href="arinze.css">
+</head>
+<body>
+
+  <div class="header no-print">
+    <button onclick="printReceipt()" class="print-btn">🖨️ PRINT RECEIPT</button>
+    <button onclick="saveToHistory()" class="save-btn">💾 SAVE TO HISTORY</button>
+    <button onclick="window.location.href='history.html'" class="history-btn">📜 VIEW HISTORY</button>
+  </div>
+
+  <!-- RECEIPT -->
+  <div id="receipt" class="receipt">
+    <div class="logo"><img src="/images/logo.jpg"/></div>
+    <div class="business-name">ARIZONA WRLD<br><span class="small">DIGITAL WRLD OF COMMUNICATION</span></div>
+    <p class="tagline">"surest plug for your REPAIR, 📲PHONE SWAP AND DIRECT PURCHASE LAPTOP 💻"</p>
+    <p class="phone">📞 09066828130</p>
+
+    <div class="info">
+      <div id="shop-address">MMB CONNECT. BEACH ROAD. JOS. PLATEAU STATE</div>
+      <div class="row">
+        <span>Date: <span id="date"></span></span>
+        <span>Receipt #: <span id="receipt-no">AZG-00001</span></span>
+      </div>
+    </div>
+
+    <div class="customer">Customer: <span id="customer-name">Walk-in Customer</span></div>
+
+    <table>
+      <thead><tr><th>ITEM</th><th>QTY</th><th>AMOUNT</th></tr></thead>
+      <tbody id="items-body"></tbody>
+    </table>
+
+    <div class="totals">
+      <div><span>SUBTOTAL</span><span id="subtotal">₦0</span></div>
+      <div><span>DISCOUNT</span><span id="discount">₦0</span></div>
+      <div class="total-line"><span>TOTAL</span><span id="total">₦0</span></div>
+      <div><span>PAID</span><span id="paid">₦0</span></div>
+      <div class="balance"><span>BALANCE</span><span id="balance">₦0</span></div>
+    </div>
+
+    <div class="thankyou">
+      Thank you for choosing the <strong>SUREST PLUG</strong>!<br>
+      Call/WhatsApp 09066828130<br>
+      FAST • QUALITY • RELIABLE
+    </div>
+  </div>
+
+  <!-- Form -->
+  <div class="form no-print">
+    <h3>Fill Receipt Details</h3>
+    <input id="input-customer" type="text" placeholder="Customer Name" value="Customer Name">
+    <input id="input-receipt" type="text" value="AZG-00001" placeholder="Receipt Number">
+    <input id="input-address" type="text" placeholder="Shop Address" value="MMB CONNECT. BEACH ROAD. JOS. PLATEAU STATE">
+    
+    <button onclick="addItemRow()" class="add-btn">+ Add Item</button>
+    <button onclick="updateReceipt()" class="update-btn">UPDATE RECEIPT PREVIEW</button>
+  </div>
+  <div id="feedback" style="min-height:24px; text-align:center;"></div>
+
+  <script src="arinze.js"></script>
+</body>
+</html>
