@@ -8,7 +8,19 @@
 </head>
 <body>
 
-  <div class="header no-print">
+  <!-- PASSWORD MODAL -->
+  <div id="password-modal" class="modal">
+    <div class="modal-content">
+      <h2>🔐 Arizona Gadgets Receipt Portal</h2>
+      <p>Enter password to continue</p>
+      <input id="password-input" type="password" placeholder="Enter password" autocomplete="off">
+      <button onclick="checkPassword()">UNLOCK</button>
+      <p id="password-error" style="color:red; margin-top:10px; font-weight:bold;"></p>
+    </div>
+  </div>
+
+  <!-- HEADER BUTTONS (Restored) -->
+  <div class="header no-print" id="main-header" style="display: none;">
     <button onclick="printReceipt()" class="print-btn">🖨️ PRINT RECEIPT</button>
     <button onclick="saveToHistory()" class="save-btn">💾 SAVE TO HISTORY</button>
     <button onclick="window.location.href='history.html'" class="history-btn">📜 VIEW HISTORY</button>
@@ -30,6 +42,11 @@
     </div>
 
     <div class="customer">Customer: <span id="customer-name">Walk-in Customer</span></div>
+    
+    <div class="imei-info">
+      <div>IMEI 1: <span id="imei1-display">N/A</span></div>
+      <div>IMEI 2: <span id="imei2-display">N/A</span></div>
+    </div>
 
     <table>
       <thead><tr><th>ITEM</th><th>QTY</th><th>AMOUNT</th></tr></thead>
@@ -58,6 +75,9 @@
     <input id="input-receipt" type="text" value="AZG-00001" placeholder="Receipt Number">
     <input id="input-address" type="text" placeholder="Shop Address" value="MMB CONNECT. BEACH ROAD. JOS. PLATEAU STATE">
     
+    <input id="input-imei1" type="text" maxlength="25" placeholder="IMEI Number 1 (max 25 digits)">
+    <input id="input-imei2" type="text" maxlength="25" placeholder="IMEI Number 2 (max 25 digits)">
+
     <button onclick="addItemRow()" class="add-btn">+ Add Item</button>
     <button onclick="updateReceipt()" class="update-btn">UPDATE RECEIPT PREVIEW</button>
   </div>
