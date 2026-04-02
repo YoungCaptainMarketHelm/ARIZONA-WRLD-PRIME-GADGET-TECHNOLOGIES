@@ -5,18 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Arizona Gadgets - Receipt History</title>
   <style>
-    body { font-family: monospace; background: #f8f9fa; margin: 0; padding: 20px; }
-    h1 { text-align: center; color: #0066ff; margin-bottom: 10px; }
-    .controls { text-align: center; margin: 15px 0; }
+    body { 
+      font-family: monospace; 
+      background: #f8f9fa; 
+      margin: 0; 
+      padding: 20px; 
+    }
+    h1 { 
+      text-align: center; 
+      color: #0066ff; 
+      margin-bottom: 10px; 
+    }
+    .controls { 
+      text-align: center; 
+      margin: 15px 0; 
+    }
     .clear-btn {
-      background: #dc3545; color: white; border: none; padding: 10px 20px;
-      border-radius: 8px; font-size: 15px; cursor: pointer; margin: 0 10px;
+      background: #dc3545; 
+      color: white; 
+      border: none; 
+      padding: 10px 20px;
+      border-radius: 8px; 
+      font-size: 15px; 
+      cursor: pointer; 
+      margin: 0 10px;
     }
     .back-btn {
-      background: #6c757d; color: white; border: none; padding: 10px 20px;
-      border-radius: 8px; font-size: 15px; cursor: pointer; margin: 0 10px;
+      background: #6c757d; 
+      color: white; 
+      border: none; 
+      padding: 10px 20px;
+      border-radius: 8px; 
+      font-size: 15px; 
+      cursor: pointer; 
+      margin: 0 10px;
     }
-    .history-list { max-width: 800px; margin: 0 auto; }
+    .history-list { 
+      max-width: 800px; 
+      margin: 0 auto; 
+    }
     .receipt-card {
       background: white;
       border: 1px solid #ddd;
@@ -25,11 +52,26 @@
       margin: 12px 0;
       box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     }
-    .receipt-card:hover { border-color: #0066ff; }
-    .receipt-header { font-weight: bold; margin-bottom: 8px; }
+    .receipt-card:hover { 
+      border-color: #0066ff; 
+    }
+    .receipt-header { 
+      font-weight: bold; 
+      margin-bottom: 8px; 
+    }
     .print-btn {
-      background: #0066ff; color: white; border: none; padding: 8px 16px;
-      border-radius: 6px; cursor: pointer; float: right;
+      background: #0066ff; 
+      color: white; 
+      border: none; 
+      padding: 8px 16px;
+      border-radius: 6px; 
+      cursor: pointer; 
+      float: right;
+    }
+    .imei { 
+      font-size: 0.9em; 
+      color: #555; 
+      margin: 4px 0; 
     }
   </style>
 </head>
@@ -65,6 +107,9 @@
           </div>
           <div>Total: ${r.total}</div>
           <div style="color:#555; font-size:0.9em; margin-top:4px;">${r.address || ''}</div>
+          
+          ${r.imei1 && r.imei1 !== "N/A" ? `<div class="imei">IMEI 1: ${r.imei1}</div>` : ''}
+          ${r.imei2 && r.imei2 !== "N/A" ? `<div class="imei">IMEI 2: ${r.imei2}</div>` : ''}
         `;
         container.appendChild(card);
       });
@@ -78,7 +123,6 @@
         return;
       }
 
-      // Create clean printable version
       const printWindow = window.open('', '_blank');
       printWindow.document.write(`
         <!DOCTYPE html>
@@ -86,21 +130,27 @@
         <head>
           <title>Receipt ${receipt.receiptNo}</title>
           <style>
-            body { font-family: monospace; width: 76mm; margin: 10mm auto; font-size: 12px; line-height: 1.4; }
-            .logo { font-size: 60px; text-align: center; color: #0066ff; margin-bottom: 8px; }
+            body { 
+              font-family: monospace; 
+              width: 76mm; 
+              margin: 10mm auto; 
+              font-size: 12px; 
+              line-height: 1.4; 
+            }
             .center { text-align: center; }
+            .bold { font-weight: bold; }
             table { width: 100%; border-collapse: collapse; }
             th, td { padding: 3px 0; }
             th { border-bottom: 1px dashed #000; text-align: left; }
             .right { text-align: right; }
-            .bold { font-weight: bold; }
             .total-line { border-top: 1px dashed #000; padding-top: 5px; font-size: 13px; }
             .thank { margin-top: 15px; text-align: center; font-size: 11px; }
+            .imei { font-size: 11px; margin: 6px 0; }
           </style>
         </head>
         <body>
-          <div class="logo center">A</div>
-          <div class="center bold">ARIZONA GADGETS<br><span style="color:#ff6200;">AND COMMUNICATION WRLD</span></div>
+          <div class="center bold" style="font-size:18px;">ARIZONA WRLD</div>
+          <div class="center" style="color:#ff6200; font-size:13px;">DIGITAL WRLD OF COMMUNICATION</div>
           <p class="center" style="font-size:10px;">"surest plug for your REPAIR, 📲PHONE SWAP AND DIRECT PURCHASE LAPTOP 💻"</p>
           <p class="center bold">📞 09066828130</p>
 
@@ -113,6 +163,9 @@
           </div>
 
           <div>Customer: ${receipt.customer}</div>
+          
+          ${receipt.imei1 && receipt.imei1 !== "N/A" ? `<div class="imei">IMEI 1: ${receipt.imei1}</div>` : ''}
+          ${receipt.imei2 && receipt.imei2 !== "N/A" ? `<div class="imei">IMEI 2: ${receipt.imei2}</div>` : ''}
 
           <table>
             <thead><tr><th>ITEM</th><th>QTY</th><th class="right">AMOUNT</th></tr></thead>
@@ -121,7 +174,7 @@
                 <tr>
                   <td>${i.name}</td>
                   <td class="center">${i.qty}</td>
-                  <td class="right">₦${(i.qty * i.price).toLocaleString()}</td>
+                  <td class="right">₦${(i.qty * i.price).toLocaleString('en-NG')}</td>
                 </tr>
               `).join('')}
             </tbody>
@@ -130,7 +183,7 @@
           <div style="margin-top:12px;">
             <div class="total-line bold"><span>TOTAL</span><span class="right">${receipt.total}</span></div>
             <div><span>PAID</span><span class="right">${receipt.total}</span></div>
-            <div class="balance"><span>BALANCE</span><span class="right">₦0</span></div>
+            <div><span>BALANCE</span><span class="right">₦0</span></div>
           </div>
 
           <div class="thank">
